@@ -18,16 +18,16 @@ public class MapsController {
         return new ResponseEntity<Address>(MockAddressRepository.getRandom(), HttpStatus.OK);
     }
 
-    // with lat=5 and lon=1 the call would be http://localhost:9191/maps/coord?lat=5&lon=1
+    // with lat=1 and lon=2 the call would be http://localhost:9191/maps/coord?lat=1&lon=2
     // cf. https://www.baeldung.com/spring-request-param
     @GetMapping("/coord")
     public ResponseEntity<Address> get(@RequestParam Map<String, String> customQuery) {
-        //System.out.println("customQuery = lat " + customQuery.get("lat"));
-        //System.out.println("customQuery = lon " + customQuery.get("lon"));
+        System.out.println("customQuery = lat " + customQuery.get("lat"));
+        System.out.println("customQuery = lon " + customQuery.get("lon"));
         return new ResponseEntity<Address>(MockAddressRepository.getRandom(), HttpStatus.OK);
     }
 
-//    The original function definiton from the starter project
+//    The original function definition from the starter project
 //    @GetMapping("/coord/")
 //    public ResponseEntity<Address> get(@RequestParam Double lat, @RequestParam Double lon) {
 //        return new ResponseEntity<Address>(MockAddressRepository.getRandom(), HttpStatus.OK);
