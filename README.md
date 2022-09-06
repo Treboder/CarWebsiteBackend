@@ -1,7 +1,17 @@
-# Vehicles API
+# Vehicles API Project
 
-A REST API to maintain vehicle data and to provide a complete
-view of vehicle details including price and address.
+Project repository for JavaND Project 2, where students implement a Vehicles API using Java and Spring Boot that can 
+communicate with separate location and pricing services. 
+In this project, a REST-based Vehicles API communicates with a location and pricing service using Spring Boot, 
+along with converting the existing Pricing Service API to a microservice registered on a Eureka server.
+
+## Shortcuts
+
+- [Swagger UI](http://localhost:8080/swagger-ui.html)
+- [Eureka Server]()
+- [Car API]()
+- [Pricing Service]()
+- [Location Service]()
 
 ## Features
 
@@ -15,91 +25,16 @@ view of vehicle details including price and address.
 
 ## Instructions
 
-#### Run the Code
+Check each component to see its details and instructions. Note that all three applications
+should be running at once for full operation.
 
-To properly run this application you need to start the Discovery Service, Boogle Maps API and
-the Pricing API first.
+- [Eureka-Server](eureka-server/README.md)
+- [Vehicles API](vehicles-api/README.md)
+- [Pricing Service with Eureka](pricing-service-with-eureka/README.md)
+- [Pricing Service with Tests](pricing-service-with-tests/README.md)
+- [Boogle Maps](boogle-maps/README.md)
 
+## Dependencies
 
-```
-$ mvn clean package
-```
+The project requires the use of Maven and Spring Boot, along with Java v11.
 
-```
-$ java -jar target/vehicles-api-0.0.1-SNAPSHOT.jar
-```
-
-Import it in your favorite IDE as a Maven Project.
-
-## Operations
-
-Swagger UI: http://localhost:8080/swagger-ui.html
-
-### Create a Vehicle
-
-`POST` `/cars`
-```json
-{
-   "condition":"USED",
-   "details":{
-      "body":"sedan",
-      "model":"Impala",
-      "manufacturer":{
-         "code":101,
-         "name":"Chevrolet"
-      },
-      "numberOfDoors":4,
-      "fuelType":"Gasoline",
-      "engine":"3.6L V6",
-      "mileage":32280,
-      "modelYear":2018,
-      "productionYear":2018,
-      "externalColor":"white"
-   },
-   "location":{
-      "lat":40.73061,
-      "lon":-73.935242
-   }
-}
-```
-
-### Retrieve a Vehicle
-
-`GET` `/cars/{id}`
-
-This feature retrieves the Vehicle data from the database
-and access the Pricing Service and Boogle Maps to enrich 
-the Vehicle information to be presented.
-
-### Update a Vehicle
-
-`PUT` `/cars/{id}`
-
-```json
-{
-   "condition":"USED",
-   "details":{
-      "body":"sedan",
-      "model":"Impala",
-      "manufacturer":{
-         "code":101,
-         "name":"Chevrolet"
-      },
-      "numberOfDoors":4,
-      "fuelType":"Gasoline",
-      "engine":"3.6L V6",
-      "mileage":32280,
-      "modelYear":2018,
-      "productionYear":2018,
-      "externalColor":"white"
-   },
-   "location":{
-      "lat":40.73061,
-      "lon":-73.935242
-   }
-}
-```
-
-### Delete a Vehicle
-
-`DELETE` `/cars/{id}`
