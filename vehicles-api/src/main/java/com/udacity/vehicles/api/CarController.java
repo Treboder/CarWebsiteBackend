@@ -3,6 +3,8 @@ package com.udacity.vehicles.api;
 
 import com.udacity.vehicles.domain.car.Car;
 import com.udacity.vehicles.service.CarService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
@@ -25,6 +27,8 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @RequestMapping("/cars")
 class CarController {
 
+    private static final Logger log = LoggerFactory.getLogger(CarController.class);
+
     private final CarService carService;
     private final CarResourceAssembler assembler;
 
@@ -40,10 +44,9 @@ class CarController {
      */
     @GetMapping
     Resources<Resource<Car>> list() {
-        List<Resource<Car>> resources = carService.list().stream().map(assembler::toResource)
-                .collect(Collectors.toList());
-        return new Resources<>(resources,
-                linkTo(methodOn(CarController.class).list()).withSelfRel());
+        List<Resource<Car>> resources = carService.list().stream().map(assembler::toResource).collect(Collectors.toList());
+        log.info("Controller returns list of vehicles");
+        return new Resources<>(resources, linkTo(methodOn(CarController.class).list()).withSelfRel());
     }
 
     /**
@@ -54,6 +57,7 @@ class CarController {
     @GetMapping("/{id}")
     Resource<Car> get(@PathVariable Long id) {
         Car car = carService.findById(id);
+        log.info("Controller found car with id="+id);
         return assembler.toResource(car);
     }
 
@@ -66,6 +70,7 @@ class CarController {
     @PostMapping
     ResponseEntity<?> post(@Valid @RequestBody Car car) throws URISyntaxException {
         Car savedCar = carService.save(car);
+        log.info("Controller created car with model= "+car.getDetails().getModel());
         Resource<Car> resource = assembler.toResource(savedCar);
         return ResponseEntity.created(new URI(resource.getId().expand().getHref())).body(resource);
     }
@@ -80,6 +85,7 @@ class CarController {
     ResponseEntity<?> put(@PathVariable Long id, @Valid @RequestBody Car car) {
         car.setId(id);
         carService.save(car);
+        log.info("Controller updated car with id= "+car.getId());
         Resource<Car> resource = assembler.toResource(new Car());
         return ResponseEntity.ok(resource);
     }
@@ -92,6 +98,7 @@ class CarController {
     @DeleteMapping("/{id}")
     ResponseEntity<?> delete(@PathVariable Long id) {
         carService.delete(id);
+        log.info("Controller deleted car with id= "+id);
         return ResponseEntity.noContent().build();
     }
 }

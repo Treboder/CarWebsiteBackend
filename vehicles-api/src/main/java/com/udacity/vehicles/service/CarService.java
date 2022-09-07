@@ -4,6 +4,9 @@ import com.udacity.vehicles.client.maps.MapsClient;
 import com.udacity.vehicles.client.prices.PriceClient;
 import com.udacity.vehicles.domain.car.Car;
 import com.udacity.vehicles.domain.car.CarRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,10 +19,13 @@ import java.util.List;
 @Service
 public class CarService {
 
+    private static final Logger log = LoggerFactory.getLogger(CarService.class);
+
     private final CarRepository repository;
     private final PriceClient priceClient;
     private final MapsClient mapsClient;
 
+    @Autowired
     public CarService(CarRepository repository, PriceClient priceClient, MapsClient mapsClient){
         this.repository = repository;
         this.priceClient = priceClient;
@@ -49,6 +55,7 @@ public class CarService {
         // To get the address for the vehicle. You should access the location from the car object and feed it to the Maps service.
         // Note: The Location class file also uses @transient for the address, meaning the Maps service needs to be called each time for the address.
         car.setLocation(mapsClient.getAddress(car.getLocation()));
+        log.info("Service found car with id=" + id);
         return car;
     }
 
@@ -66,7 +73,7 @@ public class CarService {
                         return repository.save(carToBeUpdated);
                     }).orElseThrow(CarNotFoundException::new);
         }
-
+        log.info("Service saved car with price=" + car.getPrice());
         return repository.save(car);
     }
 
@@ -79,5 +86,6 @@ public class CarService {
         Car car = repository.findById(id).orElseThrow(CarNotFoundException::new);
         // Delete the car from the repository
         repository.delete(car);
+        log.info("Service deleted car with id=" + id);
     }
 }
