@@ -3,7 +3,9 @@
 A REST API to maintain vehicle data and to provide a complete
 view of vehicle details including price and address.
 The service is available on port `8081`.
-H2 console accessible via http://localhost:8081/h2.
+- [Swagger UI](http://localhost:8081/swagger-ui.html) 
+- [Car API](http://localhost:8081) 
+- [H2 console](http://localhost:8081/h2) with jdbc url = jdbc:h2:mem:vehicledata (user "sa" with no password)
 
 ## Features
 
