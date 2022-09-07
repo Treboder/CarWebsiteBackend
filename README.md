@@ -8,10 +8,11 @@ along with converting the existing Pricing Service API to a microservice registe
 ## Shortcuts
 
 - [Swagger UI](http://localhost:8080/swagger-ui.html) on port `8080`
-- [Car API](port 8081) on port `8081`
-- [Pricing Service](8082) on port `8082`
-- [Location Service](8083) on port `8083`
-- [Eureka Server](8761) on port `8761` by default
+- [Car API](http://localhost:8081) on port `8081`
+- [H2 console](http://localhost:8081/h2) on port `8081` 
+- [Pricing Service](http://localhost:8082) on port `8082`
+- [Location Service](http://localhost:8083) on port `8083`
+- [Eureka Server](http://localhost:8761) on port `8761` by default
 
 ## Features
 
