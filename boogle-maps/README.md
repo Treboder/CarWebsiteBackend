@@ -3,7 +3,8 @@
 This is a Mock service that simulates a Maps WebService where, given a latitude
 longitude, will return a random address.
 
-Try http://localhost:9191/maps/coord?lat=1&lon=2 
+The service is available on port `8083`. 
+Try http://localhost:8083/maps/coord?lat=1&lon=2 
 for a request with parameters lat=1 and lon=2 the call would be
 
 ## Instructions
