@@ -3,6 +3,7 @@
 A REST API to maintain vehicle data and to provide a complete
 view of vehicle details including price and address.
 The service is available on port `8081`.
+H2 console accessible via http://localhost:8081/h2.
 
 ## Features
 

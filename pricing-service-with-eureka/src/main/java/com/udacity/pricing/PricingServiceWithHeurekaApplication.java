@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Creates a Spring Boot Application to run the Pricing Service.
- * TODO: Convert the application from a REST API to a microservice.
+ * TODO: Add proper test for the microservice.
  */
 @SpringBootApplication
 public class PricingServiceWithHeurekaApplication {
