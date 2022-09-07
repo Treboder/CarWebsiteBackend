@@ -10,10 +10,10 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @SpringBootApplication
 @EnableEurekaClient // is optional when spring-cloud-starter-netflix-eureka-client is part of the dependencies
-public class PricingMicroserviceWithHeurekaApplication {
+public class PricingServiceWithHeurekaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PricingMicroserviceWithHeurekaApplication.class, args);
+        SpringApplication.run(PricingServiceWithHeurekaApplication.class, args);
     }
 
 }
