@@ -4,6 +4,7 @@ import com.udacity.vehicles.domain.Location;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -20,8 +21,8 @@ public class MapsClient {
     private final WebClient client;
     private final ModelMapper mapper;
 
-    public MapsClient(WebClient maps,
-            ModelMapper mapper) {
+    @Autowired // ToDo: Check if autowiring is necessary
+    public MapsClient(WebClient maps, ModelMapper mapper) {
         this.client = maps;
         this.mapper = mapper;
     }
@@ -45,7 +46,7 @@ public class MapsClient {
                     .retrieve().bodyToMono(Address.class).block();
 
             mapper.map(Objects.requireNonNull(address), location);
-
+            log.info("Map service provided address=" +address);
             return location;
         } catch (Exception e) {
             log.warn("Map service is down");

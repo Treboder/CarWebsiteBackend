@@ -13,6 +13,10 @@ public class Address {
     public Address() {
     }
 
+    public String toString() {
+        return address + " | " + city  + " | " + state  + " | " + zip;
+    }
+
     public String getAddress() {
         return address;
     }

@@ -48,7 +48,7 @@ public class CarService {
     public Car findById(Long id) {
         //Find the car by ID from the `repository` if it exists, otherwise throw a CarNotFoundException
         Car car = repository.findById(id).orElseThrow(CarNotFoundException::new);
-        //Set the price of the car using the the Pricing Web client you create in `VehiclesApiApplication`
+        //Set the price of the car using the Pricing Web client you create in `VehiclesApiApplication`
         //Note: The car class file uses @transient, meaning you will need to call the pricing service each time to get the price.
         car.setPrice(priceClient.getPrice(car.getId()));
         // Set the location of the vehicle (including the address information) using the Maps Web client you create in `VehiclesApiApplication`
