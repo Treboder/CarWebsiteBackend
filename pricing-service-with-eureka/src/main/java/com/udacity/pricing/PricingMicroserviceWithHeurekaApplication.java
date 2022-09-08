@@ -16,6 +16,4 @@ public class PricingMicroserviceWithHeurekaApplication {
         SpringApplication.run(PricingMicroserviceWithHeurekaApplication.class, args);
     }
 
-
-
 }
