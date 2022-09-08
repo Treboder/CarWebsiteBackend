@@ -21,7 +21,7 @@ public class MapsClient {
     private final WebClient client;
     private final ModelMapper mapper;
 
-    @Autowired // ToDo: Check if autowiring is necessary
+    @Autowired
     public MapsClient(WebClient maps, ModelMapper mapper) {
         this.client = maps;
         this.mapper = mapper;

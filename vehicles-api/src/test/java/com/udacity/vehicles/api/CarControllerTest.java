@@ -101,9 +101,8 @@ public class CarControllerTest {
     @Test
     public void listCars() throws Exception {
         /**
-         * TODO: Add a test to check that the `get` method works by calling
-         *   the whole list of vehicles. This should utilize the car from `getCar()`
-         *   below (the vehicle will be the first in the list).
+         * TODO: Add a test to check that the `get` method works by calling the whole list of vehicles. This should utilize the car from `getCar()`
+         *  below (the vehicle will be the first in the list).
          */
     }
 
@@ -132,11 +131,14 @@ public class CarControllerTest {
     @Test
     public void deleteCar() throws Exception {
         /**
-         * TODO: Add a test to check whether a vehicle is appropriately deleted
-         *   when the `delete` method is called from the Car Controller. This
-         *   should utilize the car from `getCar()` below.
+         * TODO: Add a test to check whether a vehicle is appropriately deleted when the `delete` method is called from the Car Controller.
+         *  This should utilize the car from `getCar()` below.
          */
-
+        // call the service and compare
+        this.restTemplate.delete("http://localhost:" + port + "/cars/1");
+        ResponseEntity<Car> response = this.restTemplate.getForEntity("http://localhost:" + port + "/cars/1", Car.class);
+        Object r = response.getStatusCode();
+        assertThat(response.getStatusCode(), equalTo(HttpStatus.NOT_FOUND));
     }
 
     /**
