@@ -1,16 +1,39 @@
-# Pricing Service
+# Pricing Service (Microservice with Eureka)
 
-The Pricing Service is a REST WebService that simulates a backend that
-would store and retrieve the price of a vehicle given a vehicle id as
-input. In this project, you will convert it to a microservice.
+The pricing service simulates a backend that would store and retrieve the price of a vehicle given a vehicle id as input.
+This version of the pricing service is a microservice based on spring-data-rest.
+The service is available on port `8082`. 
+cf. [Baeldung spring-data-rest-intro](https://www.baeldung.com/spring-data-rest-intro)
 
-The service is available on port `8082`.
-Try http://localhost:8082/services/price?vehicleId=1
-for a request with vehicleId=1
+## Operations
 
-## Features
+### GET (in order to retrieve list of prices)
+```
+http://localhost:8082/prices
+```
+### GET (in order to retrieve a certain price by id)
+```
+http://localhost:8082/prices/1
+``` 
+### POST (in order to save a new price) 
+http://localhost:8082/prices/ with following JSON payload:
+```
+    {
+        "currency" : "USD",
+            "price" : "100",
+            "vehicleId" : "100"
+    }
+```
 
-- REST WebService integrated with Spring Boot
+### DELETE (a certain price by id)
+```
+http://localhost:8082/prices/1
+```
+
+### PUT (in order to update a certain price by id)
+```
+http://localhost:8082/prices/1
+```
 
 ## Run the code
 

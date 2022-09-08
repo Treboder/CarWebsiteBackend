@@ -16,15 +16,6 @@ public class PricingMicroserviceWithHeurekaApplication {
         SpringApplication.run(PricingMicroserviceWithHeurekaApplication.class, args);
     }
 
-    //https://www.baeldung.com/spring-data-rest-intro
-
-    // GET
-    // http://localhost:8082/prices
-    // http://localhost:8082/prices/1
-
-    // PUT
-    // POST
-    // DELETE
 
 
 }

@@ -1,16 +1,19 @@
 # Pricing Service
 
-The Pricing Service is a REST WebService that simulates a backend that
-would store and retrieve the price of a vehicle given a vehicle id as
-input. In this project, you will convert it to a microservice.
-
+The Pricing Service is a REST WebService integrated with Spring Boot that simulates a backend that
+would store and retrieve the price of a vehicle given a vehicle id as input.
 The service is available on port `8082`.
-Try http://localhost:8082/services/price?vehicleId=1 
-for a request with vehicleId=1 
 
-## Features
+## Operations
 
-- REST WebService integrated with Spring Boot
+### GET (in order to retrieve list of prices)
+```
+http://localhost:8082/services/prices
+```
+### GET (in order to retrieve a certain price by id)
+```
+http://localhost:8082/services/price?vehicleId=1
+```
 
 ## Run the code
 
