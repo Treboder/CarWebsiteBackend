@@ -16,7 +16,7 @@ public class PriceClient {
 
     private final WebClient client;
 
-    @Autowired // ToDo: Check if autowiring is necessary
+    @Autowired
     public PriceClient(WebClient pricing) {
         this.client = pricing;
     }
