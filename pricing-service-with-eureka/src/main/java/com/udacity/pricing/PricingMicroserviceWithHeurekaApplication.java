@@ -9,11 +9,22 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * TODO: Add proper test for the microservice.
  */
 @SpringBootApplication
-@EnableEurekaClient // is optional when spring-cloud-starter-netflix-eureka-client is part of the dependencies
-public class PricingServiceWithHeurekaApplication {
+@EnableEurekaClient // is optional, but supports code readability
+public class PricingMicroserviceWithHeurekaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PricingServiceWithHeurekaApplication.class, args);
+        SpringApplication.run(PricingMicroserviceWithHeurekaApplication.class, args);
     }
+
+    //https://www.baeldung.com/spring-data-rest-intro
+
+    // GET
+    // http://localhost:8082/prices
+    // http://localhost:8082/prices/1
+
+    // PUT
+    // POST
+    // DELETE
+
 
 }
