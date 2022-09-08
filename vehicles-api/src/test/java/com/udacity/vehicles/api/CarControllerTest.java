@@ -34,7 +34,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.assertj.core.api.Assertions.assertThat;
 /**
@@ -95,15 +96,18 @@ public class CarControllerTest {
     }
 
     /**
-     * Tests if the read operation appropriately returns a list of vehicles.
+     * Tests if the read operation appropriately returns a list of vehicles by checking that the `get` method works by calling the whole list of vehicles.
+     * This utilizes the car from `getCar()`below (the vehicle will be the first in the list).
      * @throws Exception if the read operation of the vehicle list fails
      */
     @Test
     public void listCars() throws Exception {
-        /**
-         * TODO: Add a test to check that the `get` method works by calling the whole list of vehicles. This should utilize the car from `getCar()`
-         *  below (the vehicle will be the first in the list).
-         */
+        Car car = getCar();
+        mvc.perform(get(new URI("/cars"))
+                        .content(json.write(car).getJson())
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk());
     }
 
     /**
@@ -111,7 +115,20 @@ public class CarControllerTest {
      * @throws Exception if the read operation for a single car fails
      */
     @Test
-    public void findCar() throws Exception {
+    public void findCarCheckingResponseStatus() throws Exception {
+        Car car = getCar();
+        mvc.perform(get(new URI("/cars/1"))
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk());
+    }
+
+    /**
+     * Tests the read operation for a single car by ID by checking that the `get` method works by calling a vehicle by ID.
+     * @throws Exception if the read operation for a single car fails
+     */
+    @Test
+    public void findCarCheckingEquality() throws Exception {
         // get initial car and set id
         Car initializedCar = getCar();
         initializedCar.setId(1L);
@@ -125,20 +142,33 @@ public class CarControllerTest {
     }
 
     /**
-     * Tests the deletion of a single car by ID.
+     * Tests updating a specific car record, i.e. with id=1
+     * @throws Exception if the update operation of a vehicle fails
+     */
+    @Test
+    public void updateCar() throws Exception {
+        Car car = getCar();
+        mvc.perform(put(new URI("/cars/1"))
+                        .content(json.write(car).getJson())
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk());
+    }
+
+    /**
+     * Tests the deletion of a single car by ID by checking whether a vehicle is appropriately deleted
+     *   when the `delete` method is called from the Car Controller.
+     *   This utilizes the car from `getCar()` below.     *
      * @throws Exception if the delete operation of a vehicle fails
      */
     @Test
     public void deleteCar() throws Exception {
-        /**
-         * TODO: Add a test to check whether a vehicle is appropriately deleted when the `delete` method is called from the Car Controller.
-         *  This should utilize the car from `getCar()` below.
-         */
-        // call the service and compare
-        this.restTemplate.delete("http://localhost:" + port + "/cars/1");
-        ResponseEntity<Car> response = this.restTemplate.getForEntity("http://localhost:" + port + "/cars/1", Car.class);
-        Object r = response.getStatusCode();
-        assertThat(response.getStatusCode(), equalTo(HttpStatus.NOT_FOUND));
+        Car car = getCar();
+        mvc.perform(delete(new URI("/cars/1"))
+                        .content(json.write(car).getJson())
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isNoContent());
     }
 
     /**

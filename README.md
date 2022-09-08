@@ -15,8 +15,6 @@ along with converting the existing Pricing Service API to a microservice registe
 - [Location Service](http://localhost:8083) on port `8083`
 - [Eureka Server](http://localhost:8761) on port `8761` by default
 
-
-
 ## Features
 
 - REST API exploring the main HTTP verbs and features
