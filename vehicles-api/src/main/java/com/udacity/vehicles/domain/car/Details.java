@@ -6,6 +6,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * Declares the additional detail variables for each Car object,
@@ -116,5 +117,19 @@ public class Details {
 
     public void setExternalColor(String externalColor) {
         this.externalColor = externalColor;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Details)) return false;
+        Details details = (Details) o;
+        boolean isEqual = body.equals(details.body) && model.equals(details.model) && manufacturer.equals(details.manufacturer) && numberOfDoors.equals(details.numberOfDoors) && fuelType.equals(details.fuelType) && engine.equals(details.engine) && mileage.equals(details.mileage) && modelYear.equals(details.modelYear) && productionYear.equals(details.productionYear) && externalColor.equals(details.externalColor);
+        return isEqual;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(body, model, manufacturer, numberOfDoors, fuelType, engine, mileage, modelYear, productionYear, externalColor);
     }
 }

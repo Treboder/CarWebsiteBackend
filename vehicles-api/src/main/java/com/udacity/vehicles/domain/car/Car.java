@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * Declares the Car class, related variables and methods.
@@ -97,5 +98,24 @@ public class Car {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Car)) return false;
+        Car car = (Car) o;
+        boolean b1 = Objects.equals(id, car.id);
+        boolean b2 = condition == car.condition;
+        boolean b3 = Objects.equals(details, car.details);
+        boolean b4 = Objects.equals(location, car.location);
+        boolean b5 = Objects.equals(price, car.price);
+        boolean isEqual = Objects.equals(id, car.id) && condition == car.condition && Objects.equals(details, car.details) && Objects.equals(location, car.location) && Objects.equals(price, car.price);
+        return isEqual;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, condition, details, location, price);
     }
 }

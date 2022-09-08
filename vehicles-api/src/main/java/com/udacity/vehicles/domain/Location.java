@@ -3,6 +3,7 @@ package com.udacity.vehicles.domain;
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * Stores information about a given location.
@@ -77,5 +78,18 @@ public class Location {
 
     public void setZip(String zip) {
         this.zip = zip;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Location)) return false;
+        Location location = (Location) o;
+        return Objects.equals(lat, location.lat) && Objects.equals(lon, location.lon) && Objects.equals(address, location.address) && Objects.equals(city, location.city) && Objects.equals(state, location.state) && Objects.equals(zip, location.zip);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lat, lon, address, city, state, zip);
     }
 }
