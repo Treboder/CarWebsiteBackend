@@ -16,7 +16,10 @@ http://localhost:8082/prices
 http://localhost:8082/prices/1
 ``` 
 ### POST (in order to save a new price) 
-http://localhost:8082/prices/ with following JSON payload:
+```
+http://localhost:8082/prices/
+``` 
+with following JSON payload:
 ```
     {
         "currency" : "USD",
