@@ -3,6 +3,7 @@
 The Pricing Service is a REST WebService integrated with Spring Boot that simulates a backend that
 would store and retrieve the price of a vehicle given a vehicle id as input.
 The service is available on port `8082`.
+[H2 console](http://localhost:8082/h2) ativated with jdbc url = jdbc:h2:mem:pricingdata (user "sa" with no password)
 
 ## Operations
 
