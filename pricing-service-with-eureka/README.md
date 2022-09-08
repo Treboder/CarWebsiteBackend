@@ -2,8 +2,8 @@
 
 The pricing service simulates a backend that would store and retrieve the price of a vehicle given a vehicle id as input.
 This version of the pricing service is a microservice based on spring-data-rest.
-The service is available on port `8082`. 
-cf. [Baeldung spring-data-rest-intro](https://www.baeldung.com/spring-data-rest-intro)
+The service is available on port `8082`.
+[H2 console](http://localhost:8082/h2) ativated with jdbc url = jdbc:h2:mem:pricingdata (user "sa" with no password)
 
 ## Operations
 
@@ -51,3 +51,6 @@ $ java -jar target/pricing-service-0.0.1-SNAPSHOT.jar
 ```
 
 It can also be imported in your IDE as a Maven project.
+
+## Helpful links
+- [Baeldung spring-data-rest-intro](https://www.baeldung.com/spring-data-rest-intro)

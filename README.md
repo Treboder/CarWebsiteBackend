@@ -9,10 +9,13 @@ along with converting the existing Pricing Service API to a microservice registe
 
 - [Swagger UI](http://localhost:8081/swagger-ui.html) on port `8081`
 - [Car API](http://localhost:8081) on port `8081`
+- [Car API H2 console](http://localhost:8081/h2) on port `8081` with jdbc url = jdbc:h2:mem:vehicledata (user "sa" with no password)
 - [Pricing Service](http://localhost:8082) on port `8082`
+- [Pricing Service H2 console](http://localhost:8082/h2) on port `8082` with jdbc url = jdbc:h2:mem:pricingdata (user "sa" with no password)
 - [Location Service](http://localhost:8083) on port `8083`
 - [Eureka Server](http://localhost:8761) on port `8761` by default
-- [H2 console](http://localhost:8081/h2) on port `8081` with jdbc url = jdbc:h2:mem:vehicledata (user "sa" with no password)
+
+
 
 ## Features
 
